@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +23,7 @@ public class Exam3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view1);
+        setContentView(R.layout.activity_exam3);
 
         arrayList = new ArrayList<String>();
         arrayList.add("one");
@@ -53,6 +55,16 @@ public class Exam3Activity extends AppCompatActivity {
         MenuItem menuItem = menu.findItem(R.id.action_create);
         return true;
     }
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_create) {
+            Intent intent = new Intent(this, Exam3EditActivity.class);
+            startActivityForResult(intent, 0);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
 }

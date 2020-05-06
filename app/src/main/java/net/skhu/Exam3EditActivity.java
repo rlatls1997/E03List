@@ -1,48 +1,53 @@
 package net.skhu;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import java.util.ArrayList;
 
-public class Exam3Acitivity extends AppCompatActivity {
 
-    RecyclerView1Adapter recyclerView1Adapter;
-    ArrayList<String> arrayList;
+
+public class Exam3EditAcitivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view1);
+        setContentView(R.layout.activity_exam3_edit);
 
-        arrayList = new ArrayList<String>();
-        arrayList.add("one");
-        arrayList.add("two");
-
-        recyclerView1Adapter = new RecyclerView1Adapter(this, arrayList);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(recyclerView1Adapter);
-
-        Button b = (Button)findViewById(R.id.btnAdd);
-        b.setOnClickListener(new View.OnClickListener() {
+        Button button = (Button) findViewById(R.id.btnSave);
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                EditText e = (EditText) findViewById(R.id.editText);
-                String s = e.getText().toString();
-                e.setText("");
-                arrayList.add(s);
-                recyclerView1Adapter.notifyDataSetChanged();
-            }
-        });
+            public void onClick(View view) {
+                EditText editText_title = (EditText) findViewById(R.id.editText_title);
+                String title = editText_title.getText().toString();
+                if (isEmptyOrWhiteSpace(title)) {
+                    editText_title.setError("제목을 입력하세요");
+                    return;
+                }
 
+                EditText editText_content = (EditText) findViewById(R.id.editText_content);
+                String body = editText_content.getText().toString();
+                if (isEmptyOrWhiteSpace(body)) {
+                    editText_content.setError("내용을 입력하세요");
+                    return;
+                }
+
+                Memo memo = new Memo(title, body, new Date());
+                Intent intent = new Intent();
+                intent.putExtra("MEMO", memo);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        };
+        button.setOnClickListener(listener);
+    }
+
+    static boolean isEmptyOrWhiteSpace(String s) {
+        if (s == null) return true;
+        return s.toString().trim().length() == 0;
     }
 }
+
