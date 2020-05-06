@@ -10,9 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import java.util.ArrayList;
 
 public class Exam3Activity extends AppCompatActivity {
@@ -53,6 +50,15 @@ public class Exam3Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK) {
+            Memo memo = (Memo)intent.getSerializableExtra("MEMO");
+
+        }
+    }
+
 
 
 

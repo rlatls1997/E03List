@@ -10,7 +10,9 @@ public class Memo implements Serializable { //serialization = 직렬화
     String body;
     Date date;
     boolean checked;
-
+    public Memo(String title){
+        this.title = title;
+    }
     public Memo(String title, Date date) {
         this.title = title;
         this.date = date;
