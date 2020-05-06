@@ -16,7 +16,6 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 public class Exam3Activity extends AppCompatActivity {
-
     RecyclerView1Adapter recyclerView1Adapter;
     ArrayList<String> arrayList;
 
@@ -30,23 +29,13 @@ public class Exam3Activity extends AppCompatActivity {
         arrayList.add("two");
 
         recyclerView1Adapter = new RecyclerView1Adapter(this, arrayList);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(recyclerView1Adapter);
 
-        Button b = (Button)findViewById(R.id.btnAdd);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                EditText e = (EditText) findViewById(R.id.editText);
-                String s = e.getText().toString();
-                e.setText("");
-                arrayList.add(s);
-                recyclerView1Adapter.notifyDataSetChanged();
-            }
-        });
+
 
     }
     @Override
