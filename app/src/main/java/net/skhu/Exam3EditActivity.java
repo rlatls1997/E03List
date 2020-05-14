@@ -23,14 +23,14 @@ public class Exam3EditActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText_title = (EditText) findViewById(R.id.editText2);
-                String title = editText_title.getText().toString();
+                EditText editText2 = (EditText) findViewById(R.id.editText2);
+                String title = editText2.getText().toString();
 
 
                 Memo memo = new Memo(title);
                 Intent intent = new Intent();
 
-                intent.putExtra("MEMO", memo);
+                intent.putExtra("MEMO",memo);
                 setResult(RESULT_OK, intent);
                 finish();
             }
